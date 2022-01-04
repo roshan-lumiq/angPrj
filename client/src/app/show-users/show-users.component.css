@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+  }
+.page1{
+  cursor: unset;
+}
+input{
+  color: rgb(29, 7, 7) !important;
+  margin: -2px;
+  width: 140px;
+  border: 0ch ;
+}

@@ -1,0 +1,82 @@
+<form [formGroup]="inputData" class="table-hover">
+  <table mat-table formArrayName="formArray" [dataSource]="allUser" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> <input type="text"
+          formControlName="nameControl" [readonly]="true" [value]="element.name">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"><input type="text"
+          formControlName="lastNameControl" [readonly]="!false" [value]="element.lastName">
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> <input type="text"
+          formControlName="emailControl" [readonly]="!(selectedRow===element._id)" [value]="element.email">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="number1">
+      <th mat-header-cell *matHeaderCellDef> Primary number </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex">
+          <input type="number" formControlName="numberControl1" [readonly]="!(selectedRow===element._id)"
+            [value]="element.number1">
+
+      </td>
+
+
+    </ng-container>
+
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> <input type="text"
+          formControlName="addressControl" [readonly]="!(selectedRow===element._id)" [value]="element.address">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pincode">
+      <th mat-header-cell *matHeaderCellDef> Pincode </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> <input type="number"
+          formControlName="pincodeControl" [readonly]="!(selectedRow===element._id)" [value]="element.pincode">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="number2">
+      <th mat-header-cell *matHeaderCellDef> Secondary number </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> <input type="number"
+          formControlName="numberControl2" [readonly]="!(selectedRow===element._id)" [value]="element.number2">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index"> <button (click)="onClick(element._id)" mat-button
+          color="warn">Delete</button><button mat-button color='Primary' (click)="onEdit(element._id)">edit</button>
+        <button mat-button  [disabled]="!(selectedRow===element._id)"
+          (click)="onDone(rowIndex )">done</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row;  columns: displayedColumns;"></tr>
+  </table>
+
+</form>
+<footer>
+  <ul class="pagination">
+    <li class="page-item">
+      <button [disabled]="! prev" (click)="onPrev()" class="page-link">Previous</button>
+    </li>
+    <li class="page-item"><button class="page-link">{{pageNo}}</button> </li>
+    <li class="page-item">
+      <button [disabled]="! next" (click)="onNext()" class="page-link">Next</button>
+    </li>
+  </ul>
+</footer>
